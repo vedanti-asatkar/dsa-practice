@@ -1,3 +1,7 @@
+package DLLdeletion.LLdeletion;
+
+import LLinsertion.node;
+
 class node{
     int data;
     node next;
@@ -6,10 +10,10 @@ class node{
         this.next=null;
     }
 }
-public class deleteEl {
-    public static node Array2LL(int [] arr){
-        if(arr==null || arr.length==0){
-            return null;
+public class delPos {
+    private static node ArrayToLL(int [] arr){
+        if (arr == null || arr.length == 0) {
+        return null;
         }
         node head=new node(arr[0]);
         node mover=head;
@@ -20,7 +24,7 @@ public class deleteEl {
         }
         return head;
     }
-    public static void traversal(node head){
+    private static void display(node head){
         node temp=head;
         while(temp!=null){
             System.out.print(temp.data + "->");
@@ -28,19 +32,21 @@ public class deleteEl {
         }
         System.out.println("null");
     }
-    public static node deleteEl(node head, int val){
+    private static node deletAtK(node head, int k){
         if(head==null){
-            return head;
+            return null;
         }
-        if(head.data==val){
+        if(k==1){
             node temp=head;
             head=head.next;
             return head;
         }
-        node temp=head;
         node prev=null;
+        node temp=head;
+        int count=0;
         while(temp!=null){
-            if(temp.data==val){
+            count++;
+            if(k==count){
                 prev.next=prev.next.next;
                 break;
             }
@@ -50,9 +56,9 @@ public class deleteEl {
         return head;
     }
     public static void main(String[] args) {
-        int [] arr={4, 5, 6, 7};
-        node head=Array2LL(arr);
-        head=deleteEl(head, 5);
-        traversal(head);
+        int[] arr={2, 5, 6, 8};
+        node head=ArrayToLL(arr);
+        head=deletAtK(head, 3);
+        display(head);
     }
 }

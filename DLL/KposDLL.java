@@ -1,3 +1,6 @@
+package DLL;
+import LLinsertion.node;
+
 class node{
     int data;
     node next;
